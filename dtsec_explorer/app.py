@@ -45,7 +45,7 @@ def main() -> None:
     st.markdown("### Interactive Digital Twin Security Learning Platform")
     st.caption(
         "Based on: Mun et al., “A Comprehensive Survey on Digital Twin Focusing on Security Threats and Requirements,” "
-        "IEEE Access, 2025 (typical citation — adjust if your copy differs)."
+        "IEEE Access, 2025."
     )
 
     apply_pending_nav()
