@@ -1,0 +1,13 @@
+services:
+  dtsec-explorer:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./document_references:/app/document_references:ro
+      # Use host code so `docker compose up` picks up app changes without rebuild
+      - ./dtsec_explorer:/app/dtsec_explorer:ro
+    environment:
+      STREAMLIT_SERVER_HEADLESS: "true"
+      DTSEC_DATA_DIR: /app/document_references
+      PYTHONPATH: /app

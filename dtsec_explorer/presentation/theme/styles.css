@@ -1,0 +1,86 @@
+.block-container { padding-top: 1rem; padding-bottom: 2rem; max-width: 1400px; }
+div[data-testid="stMetric"] { background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%); padding: 12px; border-radius: 8px; }
+.layer-card {
+    border-radius: 14px;
+    padding: 16px;
+    min-height: 166px;
+    border: 1px solid #2a3342;
+    background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    color: #e5e7eb !important;
+}
+.layer-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(2, 6, 23, 0.45);
+    border-color: #3b82f6;
+}
+.layer-card * { color: #e5e7eb !important; margin: 0; }
+.layer-card-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #9ca3af !important;
+    margin-bottom: 0.5rem !important;
+}
+.layer-card-title {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    font-weight: 700;
+    margin-bottom: 0.6rem !important;
+}
+.layer-card-desc {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: #cbd5e1 !important;
+    margin-bottom: 0.95rem !important;
+}
+.layer-card-meta {
+    font-size: 0.92rem;
+    color: #f8fafc !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.layer-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 999px;
+    background: #1f2937;
+    border: 1px solid #334155;
+    font-weight: 700;
+    font-size: 0.82rem;
+    line-height: 1;
+}
+
+/* Better button affordance and accessibility for the layer action buttons. */
+div[data-testid="stButton"] > button {
+    border-radius: 10px;
+    border: 1px solid #334155;
+    background: #0b1220;
+    color: #e5e7eb;
+    min-height: 40px;
+    font-weight: 600;
+}
+div[data-testid="stButton"] > button:hover {
+    border-color: #475569;
+    background: #101827;
+}
+div[data-testid="stButton"] > button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 1px;
+}
+
+@media (max-width: 768px) {
+    .layer-card { min-height: 144px; padding: 14px; }
+    .layer-card-title { font-size: 1rem; }
+    .layer-card-desc { font-size: 0.9rem; }
+}
+.sev-critical { background: #d32f2f; color: white; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.sev-high { background: #f57c00; color: white; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.sev-medium { background: #fbc02d; color: #333; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.sev-low { background: #388e3c; color: white; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.prop-tag { display: inline-block; margin: 2px; padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 500; }
+.sfr-code { font-family: ui-monospace, monospace; background: #263238; color: #eceff1; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }

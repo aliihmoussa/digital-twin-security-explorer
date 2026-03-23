@@ -1,0 +1,553 @@
+{
+  "layer1": {
+    "name": "Physical Space Layer",
+    "description": "Collects data from physical entities and executes actions",
+    "color": "#FFE5E5",
+    "attacks": [
+      {
+        "id": "AT1.1",
+        "name": "Data Tampering Attacks",
+        "description": "Attackers forge, modify, replace, or remove gathered data. They may inject noise or jamming during data collection.",
+        "security_properties": ["Integrity", "Authorization"],
+        "sfrs": ["FDP_ACC.1", "FDP_SDI.1"],
+        "enabling_tech": ["ET 1", "ET 3", "ET 7"],
+        "cascade_effects": ["Layer 2: Inaccurate data analysis", "Layer 3: Wrong VR creation"],
+        "severity": "High"
+      },
+      {
+        "id": "AT1.2",
+        "name": "Software (SW) Attacks",
+        "description": "Exploit vulnerabilities in proprietary or third-party software components on physical devices.",
+        "security_properties": ["Integrity", "Confidentiality", "Availability"],
+        "sfrs": ["FPT_ITI.1", "FPT_RPL.1", "FPT_STM.1"],
+        "enabling_tech": ["ET 6", "ET 7"],
+        "cascade_effects": ["Layer 2: Unreliable data", "Layer 3: Inconsistent VRs"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT1.3",
+        "name": "Threats of Physical Damage",
+        "description": "Physical access attacks: probe attacks, material removal, circuit manipulation, clock glitching.",
+        "security_properties": ["Availability", "Authentication"],
+        "sfrs": ["FPT_PHP.1", "FPT_PHP.2", "FPT_PHP.3"],
+        "enabling_tech": ["ET 6"],
+        "cascade_effects": ["Layer 2: Data loss", "Layer 3: Complete DT failure"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT1.4",
+        "name": "Threats on Extracting Sensitive Data",
+        "description": "Adversaries access collected data to extract credentials or security parameters.",
+        "security_properties": ["Confidentiality", "Privacy", "Authorization"],
+        "sfrs": ["FDP_ACC.1", "FDP_SDI.1"],
+        "enabling_tech": ["ET 1", "ET 3"],
+        "cascade_effects": ["Layer 2: Stolen credentials enable further attacks"],
+        "severity": "High"
+      },
+      {
+        "id": "AT1.5",
+        "name": "Denial of Service (DoS)",
+        "description": "Exhaust resources of physical devices through flooding, jamming, or DDoS attacks.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FPR_ANO.1", "FPR_PSE.1", "FPR_UNL.1"],
+        "enabling_tech": ["ET 7"],
+        "cascade_effects": ["Layer 2: No data for analysis", "Layer 3: DT becomes stale"],
+        "severity": "High"
+      },
+      {
+        "id": "AT1.6",
+        "name": "Sybil Attacks",
+        "description": "Attackers use multiple fake identities to deceive during P2P communications.",
+        "security_properties": ["Authentication"],
+        "sfrs": ["FIA_UAU.1", "FIA_UAU.2", "FIA_UID.1"],
+        "enabling_tech": ["ET 1", "ET 4"],
+        "cascade_effects": ["Layer 2: Contaminated data pool"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT1.7",
+        "name": "Eavesdropping Attacks",
+        "description": "Attackers secretly listen to P2P communications to capture sensitive information.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FPR_UNL.1"],
+        "enabling_tech": ["ET 3", "ET 4"],
+        "cascade_effects": ["Layer 2: Stolen data enables impersonation"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT1.8",
+        "name": "Objective Replication Attacks",
+        "description": "Add physically unauthorized objects into PS to inject malicious information.",
+        "security_properties": ["Integrity", "Confidentiality", "Authorization"],
+        "sfrs": ["FDP_ACC.1", "FDP_UID.1", "FDP_SDC.1"],
+        "enabling_tech": ["ET 1", "ET 5"],
+        "cascade_effects": ["Layer 2: Fake data enters pipeline"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT1.9",
+        "name": "Man-in-the-Middle (MITM) Attacks",
+        "description": "Intercept and modify transmitted data during P2P communications.",
+        "security_properties": ["Authentication", "Integrity", "Confidentiality", "Privacy"],
+        "sfrs": ["FPT_ITC.1", "FPT_RPL.1"],
+        "enabling_tech": ["ET 3", "ET 4"],
+        "cascade_effects": ["Layer 2: Corrupted data stored", "Layer 3: Wrong VRs"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT1.10",
+        "name": "Impersonation Attacks",
+        "description": "Assume legitimate identity during data acquisition to extract credentials.",
+        "security_properties": ["Authentication"],
+        "sfrs": ["FIA_UAU.1", "FIA_UAU.2", "FIA_UID.1"],
+        "enabling_tech": ["ET 1", "ET 4"],
+        "cascade_effects": ["Layer 2: Unauthorized access to storage"],
+        "severity": "High"
+      },
+      {
+        "id": "AT1.11",
+        "name": "Threats on Low-Quality Data",
+        "description": "Intentionally share low-quality data to undermine DS accuracy.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FPT_ITA.1"],
+        "enabling_tech": ["ET 7"],
+        "cascade_effects": ["Layer 2: Poor analysis", "Layer 3: Inaccurate VRs"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT1.12",
+        "name": "Threats on Unreliable Data",
+        "description": "Data from unauthenticated sources cannot be trusted.",
+        "security_properties": ["Authentication"],
+        "sfrs": ["FIA_UAU.1", "FIA_UID.1"],
+        "enabling_tech": ["ET 1", "ET 4"],
+        "cascade_effects": ["Layer 2: Contaminated storage"],
+        "severity": "High"
+      }
+    ]
+  },
+  "layer2": {
+    "name": "Intermediate Layer",
+    "description": "Synchronizes data between PS and DS, stores aggregated data, performs analysis and prediction",
+    "color": "#E5FFE5",
+    "attacks": [
+      {
+        "id": "AT2.1",
+        "name": "Software (SW) Attacks",
+        "description": "Compromise software components used for modeling and analyzing collected data.",
+        "security_properties": ["Integrity", "Confidentiality", "Availability"],
+        "sfrs": ["FPT_ITA.1", "FPT_ITC.1"],
+        "enabling_tech": ["ET 6", "ET 7"],
+        "cascade_effects": ["Layer 1: Wrong commands", "Layer 3: Wrong VRs"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT2.2",
+        "name": "Threats of Privacy Leakage",
+        "description": "Privacy information exposed during analysis of collected data.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FPR_UNL.1"],
+        "enabling_tech": ["ET 2", "ET 3"],
+        "cascade_effects": ["Layer 1: Physical harm from exposed data"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.3",
+        "name": "Model Inconsistency Attacks",
+        "description": "Model parameters tampered with by malicious server and distributed.",
+        "security_properties": ["Integrity"],
+        "sfrs": ["FDP_SDI.1", "FPT_ITI.1"],
+        "enabling_tech": ["ET 2", "ET 1"],
+        "cascade_effects": ["Layer 1: Wrong actions", "Layer 3: Inconsistent VRs"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT2.4",
+        "name": "Model Poisoning Attacks",
+        "description": "Alter trained gradients or model parameters to degrade analysis performance.",
+        "security_properties": ["Integrity"],
+        "sfrs": ["FPT_ITI.1", "FPT_RPL.1"],
+        "enabling_tech": ["ET 2", "ET 7"],
+        "cascade_effects": ["Layer 1: Wrong physical actions", "Layer 3: Corrupted predictions"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT2.5",
+        "name": "Software (SW) Attacks (Storage)",
+        "description": "Exploit vulnerabilities in data aggregation software.",
+        "security_properties": ["Integrity", "Confidentiality", "Availability"],
+        "sfrs": ["FPT_ITA.1", "FPT_ITC.1"],
+        "enabling_tech": ["ET 6"],
+        "cascade_effects": ["Layer 1: No data", "Layer 3: No VR updates"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.6",
+        "name": "Threats on Malicious Data Storage",
+        "description": "Install fake storage servers to capture transmitted data.",
+        "security_properties": ["Integrity", "Confidentiality"],
+        "sfrs": ["FDP_ACC.1", "FPT_ITC.1"],
+        "enabling_tech": ["ET 1", "ET 5"],
+        "cascade_effects": ["Layer 1: Commands intercepted", "Layer 3: Data stolen"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.7",
+        "name": "Threats of Gathering Sensitive Data",
+        "description": "Collect sensitive data during P2D communications for misuse.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FDP_UCT.1"],
+        "enabling_tech": ["ET 3", "ET 1"],
+        "cascade_effects": ["Layer 1: Stolen identities"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.8",
+        "name": "Threats of Physical Damage",
+        "description": "Physically damage data storage servers.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FPT_PHP.1", "FPT_PHP.2", "FPT_PHP.3"],
+        "enabling_tech": ["ET 6"],
+        "cascade_effects": ["Complete DT failure"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT2.9",
+        "name": "Data Tampering Attacks",
+        "description": "Tamper with stored data affecting VR generation.",
+        "security_properties": ["Integrity", "Authorization"],
+        "sfrs": ["FDP_ACC.1", "FDP_SDI.1"],
+        "enabling_tech": ["ET 1", "ET 3"],
+        "cascade_effects": ["Layer 3: Wrong VRs"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.10",
+        "name": "Threats of Unauthorized Data Access",
+        "description": "Unauthorized access to data storage servers.",
+        "security_properties": ["Confidentiality", "Privacy", "Authorization"],
+        "sfrs": ["FDP_ACC.1", "FDP_ACF.1"],
+        "enabling_tech": ["ET 5", "ET 1"],
+        "cascade_effects": ["Data theft", "Further attacks"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT2.11",
+        "name": "Threats of Privacy Leakage (Storage)",
+        "description": "Privacy data disclosed during aggregation.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FPR_UNL.1"],
+        "enabling_tech": ["ET 2", "ET 3"],
+        "cascade_effects": ["Regulatory violations", "Identity theft"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.12",
+        "name": "Threats of Data Misuse",
+        "description": "Data illegally sold or revealed by authorized entities.",
+        "security_properties": ["Privacy", "Authorization"],
+        "sfrs": ["FMT_MSA.1", "FMT_MTD.1"],
+        "enabling_tech": ["ET 1", "ET 5"],
+        "cascade_effects": ["Loss of trust", "Legal consequences"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.13",
+        "name": "Threats on Unreliable Data",
+        "description": "Cannot verify source of data in storage.",
+        "security_properties": ["Authentication", "Integrity"],
+        "sfrs": ["FIA_UAU.1", "FIA_UID.1"],
+        "enabling_tech": ["ET 1", "ET 4"],
+        "cascade_effects": ["Layer 3: Unreliable VRs"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.14",
+        "name": "Man-in-the-Middle (MITM) Attacks",
+        "description": "Intercept and modify synchronization data between PS and DS.",
+        "security_properties": ["Authentication", "Integrity", "Confidentiality", "Privacy"],
+        "sfrs": ["FPT_ITC.1", "FPT_RPL.1", "FPR_ANO.1"],
+        "enabling_tech": ["ET 3", "ET 4"],
+        "cascade_effects": ["Layer 1: Wrong commands", "Layer 3: Wrong VRs"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT2.15",
+        "name": "Denial of Service (DoS)",
+        "description": "Flood synchronization channel to disrupt normal operations.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FRU_FLT.1", "FRU_RSA.1"],
+        "enabling_tech": ["ET 7"],
+        "cascade_effects": ["Layer 1: No updates", "Layer 3: Stale VRs"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.16",
+        "name": "Communication Poisoning Attacks",
+        "description": "Inject poisoned data during synchronization.",
+        "security_properties": ["Integrity", "Confidentiality"],
+        "sfrs": ["FPT_ITC.1", "FPT_RPL.1"],
+        "enabling_tech": ["ET 2", "ET 7"],
+        "cascade_effects": ["Layer 3: Corrupted VRs"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.17",
+        "name": "Threats on Low-Quality Data",
+        "description": "Deliberately use low-quality data during synchronization.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FPT_ITA.1"],
+        "enabling_tech": ["ET 7"],
+        "cascade_effects": ["Layer 3: Inaccurate VRs"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT2.18",
+        "name": "Threats on Desynchronization",
+        "description": "Modify synchronization frequency to compromise consistency.",
+        "security_properties": ["Authorization"],
+        "sfrs": ["FMT_MOF.1", "FMT_MSA.1"],
+        "enabling_tech": ["ET 5"],
+        "cascade_effects": ["Layer 1: PS out of sync with DS"],
+        "severity": "High"
+      },
+      {
+        "id": "AT2.19",
+        "name": "Eavesdropping Attacks",
+        "description": "Overhear transmitted information during synchronization.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FDP_UCT.1"],
+        "enabling_tech": ["ET 3", "ET 4"],
+        "cascade_effects": ["Data theft"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT2.20",
+        "name": "Software (SW) Attacks",
+        "description": "Compromise decision-making software from DS.",
+        "security_properties": ["Integrity", "Confidentiality", "Availability"],
+        "sfrs": ["FPT_ITA.1", "FPT_ITC.1"],
+        "enabling_tech": ["ET 6"],
+        "cascade_effects": ["Layer 1: Wrong physical actions"],
+        "severity": "Critical"
+      }
+    ]
+  },
+  "layer3": {
+    "name": "Digital Space Layer",
+    "description": "Visualizes VRs, monitors status, enables D2D communication among VRs",
+    "color": "#E5E5FF",
+    "attacks": [
+      {
+        "id": "AT3.1",
+        "name": "Software (SW) Attacks",
+        "description": "Exploit vulnerabilities in visualization and modeling software.",
+        "security_properties": ["Integrity", "Confidentiality", "Availability"],
+        "sfrs": ["FMT_LIM.2", "FPT_ITA.1"],
+        "enabling_tech": ["ET 6"],
+        "cascade_effects": ["Layer 1: Wrong commands", "Layer 2: Corrupted models"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT3.2",
+        "name": "Threats on Privilege Escalation",
+        "description": "Gain administrator access to visualization software.",
+        "security_properties": ["Integrity", "Confidentiality", "Authorization"],
+        "sfrs": ["FMT_MOF.1", "FDP_ACC.1"],
+        "enabling_tech": ["ET 5", "ET 6"],
+        "cascade_effects": ["Full system compromise"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT3.3",
+        "name": "Threats on Malicious Virtual Resources",
+        "description": "Generate fake VRs or clone legitimate VRs.",
+        "security_properties": ["Integrity", "Confidentiality", "Privacy", "Availability", "Authentication"],
+        "sfrs": ["FPT_ITC.1", "FPR_ANO.1", "FIA_UAU.1"],
+        "enabling_tech": ["ET 1", "ET 5"],
+        "cascade_effects": ["Layer 1: Control of physical devices"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT3.4",
+        "name": "Threats of Gathering Sensitive Data",
+        "description": "Clone legitimate VRs to collect sensitive data.",
+        "security_properties": ["Confidentiality", "Privacy", "Authorization"],
+        "sfrs": ["FPR_ANO.1", "FDP_ACC.1"],
+        "enabling_tech": ["ET 1", "ET 3"],
+        "cascade_effects": ["Data theft"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.5",
+        "name": "Data Tampering Attacks",
+        "description": "Forge, modify, or remove VRs.",
+        "security_properties": ["Integrity", "Authorization"],
+        "sfrs": ["FDP_ACC.1", "FDP_SDI.1"],
+        "enabling_tech": ["ET 1", "ET 3"],
+        "cascade_effects": ["Layer 1: Wrong commands"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.6",
+        "name": "Denial of Service (DoS)",
+        "description": "Deploy virtual counterfeit servers to exhaust resources.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FRU_ELT.1", "FRU_PRS.1", "FRU_RSA.1"],
+        "enabling_tech": ["ET 7"],
+        "cascade_effects": ["DT unavailable"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.7",
+        "name": "Threats of Privacy Leakage",
+        "description": "Access existing VRs containing sensitive data.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FDP_UCT.1"],
+        "enabling_tech": ["ET 2", "ET 3"],
+        "cascade_effects": ["Privacy violation"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.8",
+        "name": "Visualization Tampering Attacks",
+        "description": "Manipulate HMI settings to alter VR visualization.",
+        "security_properties": ["Integrity", "Authorization"],
+        "sfrs": ["FPT_ITC.1"],
+        "enabling_tech": ["ET 5"],
+        "cascade_effects": ["User deceived", "Wrong decisions"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.9",
+        "name": "Threats on VR's Ownership Provenance",
+        "description": "Difficulty establishing ownership of VRs.",
+        "security_properties": ["Availability", "Authentication"],
+        "sfrs": ["FMT_LIM.2", "FIA_UAU.1"],
+        "enabling_tech": ["ET 1"],
+        "cascade_effects": ["IP theft", "Unauthorized use"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT3.10",
+        "name": "Model Inconsistency Attacks",
+        "description": "Distribute malicious model parameters to other VRs.",
+        "security_properties": ["Authentication", "Integrity"],
+        "sfrs": ["FIA_UAU.1", "FPT_ITI.1"],
+        "enabling_tech": ["ET 2", "ET 1"],
+        "cascade_effects": ["Layer 1: Wrong actions"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT3.11",
+        "name": "Model Poisoning Attacks",
+        "description": "Compromise model parameters by injecting malicious data.",
+        "security_properties": ["Authentication", "Integrity"],
+        "sfrs": ["FIA_UAU.1", "FPT_ITI.1"],
+        "enabling_tech": ["ET 2"],
+        "cascade_effects": ["Layer 1: Wrong commands"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT3.12",
+        "name": "Threats on Free-Riding",
+        "description": "VRs consume services without contributing.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FMT_LIM.2"],
+        "enabling_tech": ["ET 8"],
+        "cascade_effects": ["Inefficient resource use"],
+        "severity": "Low"
+      },
+      {
+        "id": "AT3.13",
+        "name": "Threats on Extracting Sensitive Data",
+        "description": "Acquire security-critical information during monitoring.",
+        "security_properties": ["Confidentiality", "Privacy", "Authorization"],
+        "sfrs": ["FPR_ANO.1", "FDP_UCT.1"],
+        "enabling_tech": ["ET 3", "ET 1"],
+        "cascade_effects": ["Unauthorized actions from PEs"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.14",
+        "name": "Man-in-the-Middle (MITM) Attacks",
+        "description": "Intercept D2D communications between VRs.",
+        "security_properties": ["Authentication", "Integrity", "Confidentiality", "Privacy"],
+        "sfrs": ["FPT_ITC.1", "FPR_ANO.1", "FIA_UAU.1"],
+        "enabling_tech": ["ET 3", "ET 4"],
+        "cascade_effects": ["Data theft", "False information"],
+        "severity": "Critical"
+      },
+      {
+        "id": "AT3.15",
+        "name": "Sybil Attacks",
+        "description": "Generate fake identities to deceive other VRs.",
+        "security_properties": ["Authentication"],
+        "sfrs": ["FIA_UAU.1", "FIA_UID.1"],
+        "enabling_tech": ["ET 1", "ET 4"],
+        "cascade_effects": ["Unauthorized access", "False information"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.16",
+        "name": "Threats on Low-Quality Data",
+        "description": "Intentionally share low-quality data during D2D communication.",
+        "security_properties": ["Availability"],
+        "sfrs": ["FPT_ITA.1"],
+        "enabling_tech": ["ET 7"],
+        "cascade_effects": ["Layer 1: Wrong commands"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT3.17",
+        "name": "Threats on Desynchronization",
+        "description": "Maliciously demand frequent synchronization.",
+        "security_properties": ["Availability", "Authorization"],
+        "sfrs": ["FMT_MOF.1", "FDP_UCT.1"],
+        "enabling_tech": ["ET 5"],
+        "cascade_effects": ["Inconsistent VRs"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT3.18",
+        "name": "Communication Poisoning Attacks",
+        "description": "Inject poisoned data during D2D communications.",
+        "security_properties": ["Authentication", "Integrity", "Confidentiality", "Privacy"],
+        "sfrs": ["FPT_ITC.1", "FPR_ANO.1", "FIA_UAU.1"],
+        "enabling_tech": ["ET 2", "ET 7"],
+        "cascade_effects": ["Inaccurate VRs"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.19",
+        "name": "Threats of Unauthorized Data Access",
+        "description": "Illegally access transmitted data during D2D sync.",
+        "security_properties": ["Confidentiality", "Privacy", "Authorization"],
+        "sfrs": ["FPR_ANO.1", "FDP_ACC.1", "FPT_ITC.1"],
+        "enabling_tech": ["ET 5", "ET 3"],
+        "cascade_effects": ["Data theft"],
+        "severity": "High"
+      },
+      {
+        "id": "AT3.20",
+        "name": "Eavesdropping Attacks",
+        "description": "Exploit insecure D2D communication channels.",
+        "security_properties": ["Confidentiality", "Privacy"],
+        "sfrs": ["FPR_ANO.1", "FDP_UCT.1"],
+        "enabling_tech": ["ET 3", "ET 4"],
+        "cascade_effects": ["Data theft"],
+        "severity": "Medium"
+      },
+      {
+        "id": "AT3.21",
+        "name": "Impersonation Attacks",
+        "description": "Exploit legitimate VR identifications for D2D comms.",
+        "security_properties": ["Authentication"],
+        "sfrs": ["FIA_UAU.1", "FIA_UID.1"],
+        "enabling_tech": ["ET 1", "ET 4"],
+        "cascade_effects": ["Extract sensitive information"],
+        "severity": "High"
+      }
+    ]
+  }
+}

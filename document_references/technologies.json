@@ -1,0 +1,68 @@
+{
+  "technologies": [
+    {
+      "id": "ET 1",
+      "name": "Blockchain",
+      "description": "Distributed ledger and consensus mechanisms for tamper-evident storage, provenance, and integrity of DT events and configurations.",
+      "security_properties": ["Integrity", "Authorization", "Authentication"],
+      "sfrs": ["FDP_SDI.1", "FPT_ITI.1", "FIA_UID.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 2",
+      "name": "Secure ML / AI",
+      "description": "Federated learning, differential privacy, and secure aggregation to protect models and training data in DT analytics pipelines.",
+      "security_properties": ["Privacy", "Confidentiality", "Integrity"],
+      "sfrs": ["FPR_ANO.1", "FDP_UCT.1", "FPT_ITI.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 3",
+      "name": "Cryptography",
+      "description": "Encryption, signatures, and secure channels to protect data at rest and in transit between physical entities, edge, and digital space.",
+      "security_properties": ["Confidentiality", "Integrity", "Authentication"],
+      "sfrs": ["FPT_ITC.1", "FDP_ACC.1", "FPR_UNL.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 4",
+      "name": "Lightweight Authentication Protocols",
+      "description": "Efficient mutual authentication and key agreement suited to resource-constrained IoT and industrial devices in the physical layer.",
+      "security_properties": ["Authentication", "Integrity"],
+      "sfrs": ["FIA_UAU.1", "FIA_UAU.2", "FIA_UID.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 5",
+      "name": "Access Control (RBAC, ABAC, ABE)",
+      "description": "Role-, attribute-, or encryption-based access control to limit who can read, write, or synchronize DT data and VRs.",
+      "security_properties": ["Authorization", "Confidentiality", "Privacy"],
+      "sfrs": ["FDP_ACC.1", "FDP_ACF.1", "FMT_MSA.1", "FMT_MOF.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 6",
+      "name": "Software / Hardware Security (TPM, TEE)",
+      "description": "Trusted execution, secure boot, and hardware roots of trust to protect firmware, keys, and critical DT software stacks.",
+      "security_properties": ["Integrity", "Confidentiality", "Availability"],
+      "sfrs": ["FPT_STM.1", "FPT_PHP.1", "FPT_ITI.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 7",
+      "name": "Intrusion & Abnormal Detection",
+      "description": "Monitoring and anomaly detection to spot DoS, poisoning, tampering, and misuse across DT communication and compute paths.",
+      "security_properties": ["Availability", "Integrity"],
+      "sfrs": ["FRU_FLT.1", "FRU_RSA.1", "FPT_ITA.1"],
+      "attacks_defended": []
+    },
+    {
+      "id": "ET 8",
+      "name": "Incentive Mechanisms",
+      "description": "Economic or reputation-based incentives to encourage honest participation and resource contribution in collaborative DT ecosystems.",
+      "security_properties": ["Availability", "Authentication"],
+      "sfrs": ["FMT_LIM.2", "FIA_UAU.1"],
+      "attacks_defended": []
+    }
+  ]
+}

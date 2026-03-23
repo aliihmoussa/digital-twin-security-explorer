@@ -1,0 +1,40 @@
+{
+  "properties": [
+    {
+      "name": "Authentication",
+      "description": "Verifies the identity of users, devices, or virtual resources before granting access or trusting data in the Digital Twin.",
+      "color": "#1565C0",
+      "sfrs": []
+    },
+    {
+      "name": "Integrity",
+      "description": "Ensures data, models, and software have not been altered or corrupted—critical when sensor data and VRs drive physical actions.",
+      "color": "#6A1B9A",
+      "sfrs": []
+    },
+    {
+      "name": "Confidentiality",
+      "description": "Protects sensitive DT data and communications from unauthorized disclosure across physical, intermediate, and digital layers.",
+      "color": "#2E7D32",
+      "sfrs": []
+    },
+    {
+      "name": "Privacy",
+      "description": "Protects personal or sensitive information beyond raw confidentiality, including minimization and controlled use in analytics and VRs.",
+      "color": "#00838F",
+      "sfrs": []
+    },
+    {
+      "name": "Availability",
+      "description": "Keeps DT services, synchronization, and visualization operational; DoS and resource attacks target this property directly.",
+      "color": "#E65100",
+      "sfrs": []
+    },
+    {
+      "name": "Authorization",
+      "description": "Enforces who may access which data, models, or controls—complementing authentication with least-privilege policies.",
+      "color": "#5D4037",
+      "sfrs": []
+    }
+  ]
+}
