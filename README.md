@@ -95,13 +95,3 @@ If `pytest` is not installed in your environment, install it first:
 ```bash
 pip install pytest
 ```
-
-## Git hygiene
-
-The repository ignores local/runtime artifacts and large reference binaries:
-
-- virtual env/cache files
-- `*.egg-info/`
-- `*.pdf` and `document_references/*.pdf`
-
-This keeps the repo focused on source code and structured JSON data only.
