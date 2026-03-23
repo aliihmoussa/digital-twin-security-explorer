@@ -2,7 +2,18 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import streamlit as st
+
+# When Streamlit runs a file path (e.g. `streamlit run dtsec_explorer/app.py`),
+# the package root may not be on sys.path in some environments (e.g. Streamlit Cloud).
+# Ensure repo root is importable so `dtsec_explorer.*` absolute imports always work.
+if __package__ in (None, ""):
+    repo_root = Path(__file__).resolve().parents[1]
+    if str(repo_root) not in sys.path:
+        sys.path.insert(0, str(repo_root))
 
 from dtsec_explorer.domain import load_all
 from dtsec_explorer.presentation.pages.cheat_sheet import render as render_cheat_sheet
