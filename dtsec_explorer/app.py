@@ -18,7 +18,6 @@ if __package__ in (None, ""):
 from dtsec_explorer.domain import load_all
 from dtsec_explorer.presentation.pages.cheat_sheet import render as render_cheat_sheet
 from dtsec_explorer.presentation.pages.explore import render as render_explore
-from dtsec_explorer.presentation.pages.quiz import render as render_quiz
 from dtsec_explorer.presentation.pages.technologies import render as render_technologies
 from dtsec_explorer.presentation.state import KEY_NAV, apply_pending_nav, init_state
 from dtsec_explorer.presentation.theme import load_css
@@ -50,13 +49,12 @@ def main() -> None:
 
     apply_pending_nav()
     st.sidebar.markdown("---")
-    nav = st.sidebar.radio("Navigate", ["Explore", "Technologies", "Cheat sheet", "Quiz"], key=KEY_NAV)
+    nav = st.sidebar.radio("Navigate", ["Explore", "Technologies", "Cheat sheet"], key=KEY_NAV)
 
     routes = {
         "Explore": render_explore,
         "Technologies": render_technologies,
         "Cheat sheet": render_cheat_sheet,
-        "Quiz": render_quiz,
     }
     routes[nav](bundle)
 
